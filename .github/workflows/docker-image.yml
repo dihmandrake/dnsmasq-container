@@ -1,12 +1,8 @@
 ---
-name: Publish Docker image
+name: Docker image
 on:
   push:
-    branches:
-      - main
   pull_request:
-    branches:
-      - main
   schedule:
     # Rebuild weekly
     - cron:  '0 0 * * 0'
@@ -36,11 +32,6 @@ jobs:
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx for Multi Arch builds and Caching
         uses: docker/setup-buildx-action@v1
-      #- name: Log in to Docker Hub
-      #  uses: docker/login-action@v1
-      #  with:
-      #    username: ${{ secrets.DOCKER_USERNAME }}
-      #    password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
         with:
@@ -54,11 +45,11 @@ jobs:
         with:
           images: "ghcr.io/${{ github.repository }}"
 
-      - name: Build & Push Docker image
+      - name: Build Docker image & push on main branch
         uses: docker/build-push-action@v2
         with:
           context: ./
-          push: ${{ always() && format('refs/heads/{0}', ) == github.ref }}
+          push: ${{ github.event.repository.default_branch == github.ref }}
           platforms: linux/amd64,linux/arm/v7,linux/arm64/v8
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

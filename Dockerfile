@@ -2,6 +2,7 @@ FROM alpine:3.14.3 as build
 
 ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skip-cache-for-stage
 
+# hadolint ignore=DL3018
 RUN set -eux \
     && apk --no-cache add dnsmasq
 
