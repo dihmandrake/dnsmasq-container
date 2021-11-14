@@ -17,4 +17,4 @@ FROM scratch as final
 COPY --from=layout --chown=0:0 / /
 
 # --port=0 to disable the DNS functionality
-ENTRYPOINT [ "/usr/sbin/dnsmasq", "--keep-in-foreground", "--log-facility=-", "--user=", "--group=", "--pid-file", "--port=0" ]
+ENTRYPOINT [ "/usr/sbin/dnsmasq", "--keep-in-foreground", "--log-facility=-", "--user=", "--group=", "--pid-file" ]
