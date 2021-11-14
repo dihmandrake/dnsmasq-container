@@ -8,8 +8,8 @@ RUN set -eux \
 
 FROM scratch as layout
 
-COPY --from=build /lib/ld-musl-x86_64.so.1 /lib/ld-musl-x86_64.so.1
-COPY --from=build /lib/libc.musl-x86_64.so.1 /lib/libc.musl-x86_64.so.1
+COPY --from=build /lib/ld-musl-*.so.1 /lib/
+COPY --from=build /lib/libc.musl-*.so.1 /lib/
 COPY --from=build /usr/sbin/dnsmasq /usr/sbin/dnsmasq
 
 FROM scratch as final
