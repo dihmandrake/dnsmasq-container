@@ -9,7 +9,7 @@ permissions:
 jobs:
   Dependabot-Automerge:
     runs-on: ubuntu-latest
-    if: ${{ github.actor == 'dependabot[bot]' }}}}
+    if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       # Keeping the metadata here as it validates the commit signature
       - name: Dependabot metadata
