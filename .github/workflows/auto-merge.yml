@@ -1,5 +1,5 @@
 ---
-name: Dependabot auto-merge
+name: Auto Merge
 on: pull_request_target
 
 permissions:
@@ -7,7 +7,8 @@ permissions:
   contents: write
 
 jobs:
-  Dependabot-Automerge:
+  dependabot-auto-merge:
+    name: Dependabot Auto Merge
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
