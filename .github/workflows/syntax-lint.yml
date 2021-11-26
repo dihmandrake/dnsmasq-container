@@ -16,9 +16,8 @@ jobs:
         persist-credentials: false
         fetch-depth: 0
     - name: GitHub Super Linter
-      uses: github/super-linter/slim@v4
+      uses: github/super-linter/slim@v4.8.4
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        VALIDATE_GITHUB_ACTIONS: false # Issue with ref_name property https://github.com/rhysd/actionlint/pull/72
         VALIDATE_DOCKERFILE: false  # To many false positives and issues
         #VALIDATE_DOCKERFILE_HADOLINT: true  # Explicitly enabled to show Dockerfile linting;
