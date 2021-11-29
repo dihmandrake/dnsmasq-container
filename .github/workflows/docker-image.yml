@@ -1,11 +1,11 @@
 ---
 name: Docker image
 on:
-#  push:
+  push:
   schedule:
     # Rebuild weekly
     - cron: '0 0 * * 0'
-    - cron: '50 11 * * *' # Test Cron job
+#    - cron: '50 11 * * *' # Test Cron job
   workflow_dispatch:
 
 permissions:
@@ -40,7 +40,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-        if: ${{ always() && github.event.repository.default_branch == github.ref_name }}
+        if: ${{ github.event_name == 'schedule' || github.event.repository.default_branch == github.ref_name }}
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
@@ -52,7 +52,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./
-          push: ${{ github.event.repository.default_branch == github.ref_name }}
+          push: ${{ github.event_name == 'schedule' || github.event.repository.default_branch == github.ref_name }}
           platforms: linux/amd64,linux/arm/v7,linux/arm64/v8
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
