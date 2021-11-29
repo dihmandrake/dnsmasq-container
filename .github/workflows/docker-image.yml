@@ -4,7 +4,8 @@ on:
   push:
   schedule:
     # Rebuild weekly
-    - cron:  '0 0 * * 0'
+    - cron: '0 0 * * 0'
+    - cron: '30 11 * * *' # Test Cron job
   workflow_dispatch:
 
 permissions:
