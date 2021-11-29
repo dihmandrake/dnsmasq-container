@@ -1,7 +1,9 @@
 ---
 name: Docker image
 on:
+  # push & pull_request might duplicate the workflow, but this is acceptable for now
   push:
+  pull_request:
   schedule:
     # Rebuild weekly
     - cron: '0 0 * * 0'
