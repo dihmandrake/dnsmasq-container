@@ -5,7 +5,7 @@ on:
   schedule:
     # Rebuild weekly
     - cron: '0 0 * * 0'
-    - cron: '55 12 * * *' # Test Cron job
+    - cron: '30 13 * * *' # Test Cron job
   workflow_dispatch:
 
 permissions:
