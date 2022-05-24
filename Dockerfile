@@ -1,4 +1,4 @@
-FROM alpine:3.15.4 as build
+FROM alpine:3.16.0 as build
 
 ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skip-cache-for-stage
 
